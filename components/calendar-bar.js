@@ -46,7 +46,7 @@ export default observer(
     render() {
       return (
         <View style={styles.container}>
-          <Title>{offerings_store.current_month}</Title>
+          <Title>{format(offerings_store.offerings_date, 'MMMM')}</Title>
           <FlatList
             contentContainerStyle={styles.contentContainerStyle}
             renderItem={this.render_row}

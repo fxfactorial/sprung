@@ -1,11 +1,15 @@
-import { types, onSnapshot } from 'mobx-state-tree';
+import { types, onSnapshot, onPatch } from 'mobx-state-tree';
 import format from 'date-fns/format';
-import addDays from 'date-fns/add_days';
+import isToday from 'date-fns/is_today';
+import isSameDay from 'date-fns/is_same_day';
+
+import dummy_data from '../dummy-data';
 
 const NavigationStoreModel = types
   .model('NavigationStore', {
     drawer_button_shows: types.boolean,
     title: 'Sprung',
+    // Hack because ReactNative tag wants at least something, change to '' to see red box.
     subtitle: ' ',
   })
   .actions(self => ({
@@ -16,8 +20,15 @@ const NavigationStoreModel = types
 
 const Offering = types.model('Offering', {
   id: types.identifier(),
+  kind: types.enumeration('offering-kind', ['Yoga', 'Dance', 'Meditation']),
+  teacher_name: types.string,
+  teacher_image_uri: types.string,
+  title: types.string,
+  // Should make this into UNIX timestamp,
+  // then date-fns pretty formats into 1 Hour 30 Minutes
+  within_time: types.string,
+  is_personalized: types.boolean,
   cost: types.string,
-  author: types.string,
 });
 
 const OfferingsEachDay = types.model('OfferingEachDay', {
@@ -27,12 +38,24 @@ const OfferingsEachDay = types.model('OfferingEachDay', {
 
 const SprungOfferings = types
   .model('SprungOfferings', {
-    current_month: types.string,
+    offerings_date: types.Date,
     sprung_offerings: types.array(OfferingsEachDay),
   })
+  .views(self => ({
+    get todays_offerings() {
+      for (const d of self.sprung_offerings) {
+        if (isSameDay(self.offerings_date, d.scheduled_date)) return d.offerings;
+      }
+      return [];
+    },
+  }))
   .actions(self => ({
+    set_offerings_date(new_date) {
+      // Make sure its a date?
+      self.offerings_date = new_date;
+    },
     refresh_offerings() {
-      //
+      // some async server action
     },
   }));
 
@@ -41,21 +64,10 @@ export const nav_store = NavigationStoreModel.create({
 });
 
 const TODAY = new Date();
-const MONTH = format(TODAY, 'MMMM');
 
 export const offerings_store = SprungOfferings.create({
-  current_month: MONTH,
-  sprung_offerings: [
-    { scheduled_date: TODAY, offerings: [{ id: '0', cost: '3.99', author: 'Jim Smith' }] },
-    {
-      scheduled_date: addDays(TODAY, 1),
-      offerings: [{ id: '1', cost: '3.99', author: 'Jim Smith' }],
-    },
-    {
-      scheduled_date: addDays(TODAY, 2),
-      offerings: [{ id: '2', cost: '3.99', author: 'Jim Smith' }],
-    },
-  ],
+  offerings_date: TODAY,
+  sprung_offerings: [dummy_data.card_day_a, dummy_data.card_day_b, dummy_data.card_day_c],
 });
 
 onSnapshot(nav_store, snapshot => {
