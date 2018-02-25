@@ -1,19 +1,7 @@
-import { StackNavigator } from 'react-navigation';
+import { DrawerNavigator } from 'react-navigation';
 
-import colors from '../product/colors';
-import fitnesslist from '../screens/available-fitness-list';
-import fitnesslist_header_text from '../components/header-title';
+import main_list_stack from './main-list-stack';
 
-export default StackNavigator(
-  {
-    'available-fitness-list': { screen: fitnesslist },
-  },
-  {
-    navigationOptions: ({ navigation }) => ({
-      headerTitle: fitnesslist_header_text,
-      headerStyle: {
-        backgroundColor: colors.main_theme_green,
-      },
-    }),
-  }
-);
+export default DrawerNavigator({
+  'home-screen': { screen: main_list_stack },
+});
