@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "standardx --verbose | snazzy",
     "test": "jest"
   },
   "dependencies": {
@@ -23,9 +24,19 @@
     "babel-jest": "22.4.1",
     "babel-preset-react-native": "4.0.0",
     "jest": "22.4.2",
-    "react-test-renderer": "16.2.0"
+    "react-test-renderer": "16.2.0",
+    "snazzy": "^7.0.0",
+    "standardx": "^1.0.3"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "eslintConfig": {
+    "rules": {
+      "camelcase": 0,
+      "semi": [2, "always"],
+      "no-extra-semi": 2,
+      "comma-dangle": 0
+    }
   }
 }
