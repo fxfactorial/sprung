@@ -15,18 +15,19 @@ const styles = StyleSheet.create({
 const white_space = <View style={styles.item_separator} />;
 
 export default class FitnessList extends React.Component {
-  row_render({ item, index }) {
-    return <SprungCard {...item} />;
+  row_render(navigation, { item, index }) {
+    return <SprungCard {...item} navigation={navigation} />;
   }
 
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <CalendarBar />
         <FlatList
           ListEmptyComponent={no_classes_available}
           ItemSeparatorComponent={() => white_space}
-          renderItem={this.row_render}
+          renderItem={this.row_render.bind(null, navigation)}
           keyExtractor={({ id }) => id}
           style={styles.table}
           data={dummy_data.card_data}

@@ -54,16 +54,21 @@ const ActivityAuthor = ({ teacher_name, teacher_image_uri }) => (
   </View>
 );
 
-const PurchaseBlock = ({ cost }) => (
+const PurchaseBlock = ({ cost, purchase_block_handler }) => (
   <View style={styles.booking_block}>
     <Caption>Book Class</Caption>
-    <Button onPress={() => console.log('123')} style={styles.booking_block_button}>
+    <Button onPress={purchase_block_handler} style={styles.booking_block_button}>
       <Text style={styles.booking_block_text}>$ {cost}</Text>
     </Button>
   </View>
 );
 
 export default class SprungCard extends React.Component {
+  purchase_block_handler = async () => {
+    const { navigation } = this.props;
+    navigation.navigate('sprung-session');
+  };
+
   render() {
     const { teacher_name, teacher_image_uri, cost, ...activity_data } = this.props;
     return (
@@ -71,7 +76,7 @@ export default class SprungCard extends React.Component {
         <ActivityColumn {...activity_data} />
         <ActivityAuthor teacher_name={teacher_name} teacher_image_uri={teacher_image_uri} />
         <Divider inset={false} />
-        <PurchaseBlock cost={cost} />
+        <PurchaseBlock cost={cost} purchase_block_handler={this.purchase_block_handler} />
       </Card>
     );
   }
