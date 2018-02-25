@@ -1,6 +1,7 @@
 export default {
-  cardData: [
+  card_data: [
     {
+      id: '0',
       kind: 'yoga',
       teacher_name: 'Jim Smith',
       teacher_image_uri: '',
@@ -10,6 +11,7 @@ export default {
       cost: '3.99',
     },
     {
+      id: '1',
       kind: 'dance',
       teacher_name: 'Sarah Jones',
       teacher_image_uri: '',
@@ -19,6 +21,7 @@ export default {
       cost: '3.99',
     },
     {
+      id: '2',
       kind: 'meditation',
       teacher_name: 'Kevin Wu',
       teacher_image_uri: '',
@@ -28,6 +31,7 @@ export default {
       cost: '1.99',
     },
     {
+      id: '3',
       kind: 'meditation',
       teacher_name: 'Casey Jordon',
       teacher_image_uri: '',
