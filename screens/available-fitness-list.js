@@ -8,15 +8,15 @@ import dummy_data from '../dummy-data';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  table: { backgroundColor: 'orange', flex: 1 },
-  item_separator: { backgroundColor: 'aliceblue' },
+  table: { flex: 1, paddingTop: 15, paddingHorizontal: 10 },
+  item_separator: { backgroundColor: 'transparent', height: 15 },
 });
 
 const white_space = <View style={styles.item_separator} />;
 
 export default class FitnessList extends React.Component {
-  row_render() {
-    return <SprungCard />;
+  row_render({ item, index }) {
+    return <SprungCard {...item} />;
   }
 
   render() {

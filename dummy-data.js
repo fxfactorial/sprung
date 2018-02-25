@@ -2,7 +2,7 @@ export default {
   card_data: [
     {
       id: '0',
-      kind: 'yoga',
+      kind: 'Yoga',
       teacher_name: 'Jim Smith',
       teacher_image_uri: '',
       title: 'Sivananda Yoga',
@@ -12,7 +12,7 @@ export default {
     },
     {
       id: '1',
-      kind: 'dance',
+      kind: 'Dance',
       teacher_name: 'Sarah Jones',
       teacher_image_uri: '',
       title: 'Hip-hop Dance',
@@ -22,7 +22,7 @@ export default {
     },
     {
       id: '2',
-      kind: 'meditation',
+      kind: 'Meditation',
       teacher_name: 'Kevin Wu',
       teacher_image_uri: '',
       title: 'Start your day',
@@ -32,7 +32,7 @@ export default {
     },
     {
       id: '3',
-      kind: 'meditation',
+      kind: 'Meditation',
       teacher_name: 'Casey Jordon',
       teacher_image_uri: '',
       title: 'Basic Breathing Exercise',
