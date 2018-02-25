@@ -1,0 +1,40 @@
+export default {
+  cardData: [
+    {
+      kind: 'yoga',
+      teacher_name: 'Jim Smith',
+      teacher_image_uri: '',
+      title: 'Sivananda Yoga',
+      within_time: '30 Minutes',
+      is_personalized: true,
+      cost: '3.99',
+    },
+    {
+      kind: 'dance',
+      teacher_name: 'Sarah Jones',
+      teacher_image_uri: '',
+      title: 'Hip-hop Dance',
+      within_time: '1 Hour and 30 Minutes',
+      is_personalized: false,
+      cost: '3.99',
+    },
+    {
+      kind: 'meditation',
+      teacher_name: 'Kevin Wu',
+      teacher_image_uri: '',
+      title: 'Start your day',
+      within_time: '20 Minutes',
+      is_personalized: false,
+      cost: '1.99',
+    },
+    {
+      kind: 'meditation',
+      teacher_name: 'Casey Jordon',
+      teacher_image_uri: '',
+      title: 'Basic Breathing Exercise',
+      within_time: '30 Minutes',
+      is_personalized: false,
+      cost: '1.99',
+    },
+  ],
+};
