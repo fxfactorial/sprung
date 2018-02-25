@@ -16,6 +16,10 @@ const theme = {
 export default class SprungApplication extends Component {
   state = { application_loaded: false };
 
+  componentWillMount() {
+    StatusBar.setBarStyle('light-content');
+  }
+
   componentDidMount() {
     this.setState(() => ({ application_loaded: true }));
   }
